@@ -1,0 +1,2 @@
+#!/bin/bash
+find ~/lib -type f -name "changeBackgroundPdf" -exec xclip -sel c '{}' \; -quit

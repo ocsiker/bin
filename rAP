@@ -1,0 +1,10 @@
+/* - TODO:  <12-09-22, ocsiker> - */
+/* remote android phone use scrcpy  */
+/* link : https://github.com/Genymobile/scrcpy */
+
+#!/bin/bash
+
+        /* -S make screen phone off */
+        scrcpy -S 
+
+

@@ -1,0 +1,49 @@
+#!/bin/bash
+
+#input $1 line to output
+# example if output headphone 
+# switchOutSound headphone
+
+clear
+# echo "YOU MUST INPUT WHAT LINE OUT: 
+# 1. headphones 
+# 2. lineout 
+# 0. Exit
+# example switchOutSound headphones"
+headphone="headphones";
+lineout="lineout";
+# read -p "Enter selection [0-2] > "
+# if [[ "$REPLY" =~ ^[0-2]$ ]]; then
+#         if [[ "$REPLY" == 0 ]]; then
+#                 echo "Exit change sound output."
+#                 exit
+#         fi 
+#         if [[ "$REPLY" == 1 ]]; then
+#         pactl set-sink-port alsa_output.pci-0000_00_1f.3.analog-stereo analog-output-${headphone}
+#                 echo "change to ${headphone}"
+#                 exit
+#         fi 
+#         if [[ "$REPLY" == 2 ]]; then
+#         pactl set-sink-port alsa_output.pci-0000_00_1f.3.analog-stereo analog-output-${lineout}
+#                 echo "change to ${lineout}"
+#                 exit
+#         fi 
+# fi
+#         
+if [[ $@ < 1 ]];then
+        echo "input argument"
+else
+        case $1 in 
+                headphone|headphones)
+                        echo "${1}"
+         pactl set-sink-port alsa_output.pci-0000_00_1f.3.analog-stereo analog-output-${headphone}
+         ;; 
+                lineout)
+                        echo "${1}"
+         pactl set-sink-port alsa_output.pci-0000_00_1f.3.analog-stereo analog-output-${lineout}
+         ;;
+                *)
+         echo "Please input correctly!"
+         ;;
+esac
+fi

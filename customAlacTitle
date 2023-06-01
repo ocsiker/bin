@@ -1,0 +1,5 @@
+#!/bin/bash
+
+newName=$1
+echo -e "\e]2;${newName}\007"
+echo "Change Alacritty title to $1"
