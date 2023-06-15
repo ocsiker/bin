@@ -49,4 +49,5 @@ echo "public class Main {
 " >>${javaProjectName}/src/main/Main.java
 
 cd ${javaProjectName}/src/main
-nvim ${javaProjectName}/${javaProjectName}.java
+# trans uppercasse dir to lowercase
+nvim ${javaProjectName,,}/${javaProjectName}.java
