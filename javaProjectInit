@@ -49,4 +49,4 @@ echo "public class Main {
 " >>${javaProjectName}/src/main/Main.java
 
 cd ${javaProjectName}/src/main
-nvim ${javaProjectName}.java
+nvim ${javaProjectName}/${javaProjectName}.java
