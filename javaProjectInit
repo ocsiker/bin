@@ -35,18 +35,18 @@ echo "run file "
 
 javaProjectName=$1
 
-mkdir -p "${javaProjectName}/{src,test,lib,build,dist,docs}"
-mkdir -p "${javaProjectName}/src/{main,test}/"
-touch "${javaProjectName}/README.md"
+mkdir -p ${javaProjectName}/{src,test,lib,build,dist,docs}
+mkdir -p ${javaProjectName}/src/{main,test}/
+touch ${javaProjectName}/README.md
 
-touch "${javaProjectName}/src/main/Main.java"
+touch ${javaProjectName}/src/main/Main.java
 echo "public class Main {
     public static void main(String[] args) {
         // Program execution starts here
         System.out.println(\"Hello, world!\");
     }
 }
-" >>"${javaProjectName}/src/main/Main.java"
+" >>${javaProjectName}/src/main/Main.java
 
-cd "${javaProjectName}/src/main"
-nvim "${javaProjectName}.java"
+cd ${javaProjectName}/src/main
+nvim ${javaProjectName}.java
