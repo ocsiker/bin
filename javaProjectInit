@@ -3,33 +3,33 @@
 # create layout for java project
 # YourProjectName/
 # comment block with : <<'END';
-: <<'END'
-${javaProjectName}
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   ├── package1/
-│   │   │   │   └── Class1.java
-│   │   │   ├── package2/
-│   │   │   │   └── Class2.java
-│   │   │   └── Main.java
-│   │   └── resources/
-│   └── test/
-│       ├── java/
-│       │   ├── package1/
-│       │   │   └── Class1Test.java
-│       │   ├── package2/
-│       │   │   └── Class2Test.java
-│       │   └── MainTest.java
-│       └── resources/
-├── lib/
-│   ├── dependency1.jar
-│   └── dependency2.jar
-├── build/
-├── dist/
-├── docs/
-└── README.md
-END
+#: <<'END'
+#${javaProjectName}
+#├── src/
+#│   ├── main/
+#│   │   ├── java/
+#│   │   │   ├── package1/
+#│   │   │   │   └── Class1.java
+#│   │   │   ├── package2/
+#│   │   │   │   └── Class2.java
+#│   │   │   └── Main.java
+#│   │   └── resources/
+#│   └── test/
+#│       ├── java/
+#│       │   ├── package1/
+#│       │   │   └── Class1Test.java
+#│       │   ├── package2/
+#│       │   │   └── Class2Test.java
+#│       │   └── MainTest.java
+#│       └── resources/
+#├── lib/
+#│   ├── dependency1.jar
+#│   └── dependency2.jar
+#├── build/
+#├── dist/
+#├── docs/
+#└── README.md
+#END
 
 echo "run file "
 
