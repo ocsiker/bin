@@ -1,0 +1,11 @@
+#!/bin/bash
+
+_changeOutSound_completions(){
+  COMPREPLY+=( headphone )
+  COMPREPLY+=( lineout )
+}
+
+
+complete -F _changeOutSound_completions changeOutSound
+
+

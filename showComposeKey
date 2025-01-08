@@ -1,0 +1,3 @@
+#!/bin/bash
+
+less "/usr/share/X11/locale/$(grep -m1 "${LANG%.*}.UTF-8\$" /usr/share/X11/locale/locale.dir | cut -d/ -f1)/Compose"

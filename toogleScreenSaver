@@ -1,0 +1,12 @@
+#!/bin/bash
+
+state=$(gsettings get org.gnome.desktop.screensaver lock-enabled)
+
+if [[ $state == "true" ]]; then 
+  echo "state of screensaver is false"
+gsettings set org.gnome.desktop.screensaver lock-enabled false
+else 
+gsettings set org.gnome.desktop.screensaver lock-enabled true
+  echo "state of screensaver is true"
+fi
+
