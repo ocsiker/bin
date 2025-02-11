@@ -1,3 +1,9 @@
 #!/bin/bash
 
-find /home/ocsiker/lib -type f -name "changeBackgroundPdf" -exec xclip -sel c '{}' \; -quit
+# Kiểm tra nếu có DISPLAY (cần thiết để clipboard hoạt động)
+if [ -z "$DISPLAY" ]; then
+	export DISPLAY=:0
+fi
+
+# Tìm file và copy vào clipboard
+find /home/ocsiker/lib -type f -name "changeBackgroundPdf" -exec xclip -selection clipboard '{}' \; -quit
