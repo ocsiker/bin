@@ -1,6 +1,6 @@
 #!/bin/env bash
 
-for pkg in $(snap list | awk 'NR >1 {print $1'); do
+for pkg in $(snap list | awk 'NR >1 {print $1}'); do
 	sudo snap remove $pkg
 done
 
