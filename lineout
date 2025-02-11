@@ -1,3 +1,2 @@
 #!/bin/bash
-
-changeOutSound lineout
+soundout.sh lineout
