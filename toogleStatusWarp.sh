@@ -5,7 +5,8 @@ echo $status
 
 if [[ "$status" == "Disconnected" ]]; then
 	warp-cli connect
-	rofi -e "Warp connect!"
+	notify-send "Warp status" "Connected!" -t 1000
+	# rofi -e "Warp connect!"
 elif [[ "$status" == "Connected" ]]; then
 	warp-cli disconnect
 	rofi -e "Warp disconnect!"
