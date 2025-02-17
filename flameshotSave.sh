@@ -1,16 +1,16 @@
 #!/bin/bash
 
-# Thư mục lưu ảnh
-SAVE_DIR=~/Pictures/Screenshots
-
-# Kiểm tra nếu thư mục không tồn tại thì tạo mới
-if [[ ! -d "$SAVE_DIR" ]]; then
-	mkdir -p "$SAVE_DIR"
-	notify-send "📂 Đã tạo thư mục" "Thư mục $SAVE_DIR đã được tạo để lưu ảnh."
-fi
-
 # Chụp màn hình và copy vào clipboard trước
 flameshot gui -c
+
+# Thư mục lưu ảnh
+DEFAULT_SAVE_DIR=~/Pictures/Screenshots
+
+# Chọn thư mục lưu ảnh qua hộp thoại Zenity, nếu không chọn sẽ dùng thư mục mặc định
+SAVE_DIR=$(zenity --file-selection --directory --title="Chọn thư mục lưu ảnh" 2>/dev/null)
+if [[ -z "$SAVE_DIR" ]]; then
+	SAVE_DIR="$DEFAULT_SAVE_DIR"
+fi
 
 # Hộp thoại nhập tên file với Zenity
 FILENAME=$(zenity --entry --title="Flameshot" --text="Nhập tên ảnh:" --entry-text="$(date '+%Y-%m-%d_%H-%M-%S')") || exit
