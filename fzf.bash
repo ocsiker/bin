@@ -1,10 +1,5 @@
-export FZF_DEFAULT_COMMAND='find . -type d -name node_modules -prune -o -type d -name "?git" -prune -o -name "*"'
-export FZF_DEFAULT_OPTS="--height 40% --reverse --border --preview='less {}'\
-        --bind ctrl-u:preview-page-up,ctrl-d:preview-page-down"
-# for ctrl T 
+source /usr/share/doc/fzf/examples/key-bindings.bash
 
-export FZF_CTRL_T_COMMAND='find . -type d -name node_modules -prune -o -type d -name "?git" -prune -o -name "*"'
-export FZF_CTRL_T_OPTS="--height 40% --reverse --border --preview='less {}'\
-        --bind ctrl-u:preview-page-up,ctrl-d:preview-page-down"
-
-
+# export FZF_DEFAULT_COMMAND='find . -type d \( -name node_modules -o -name .git \) -prune -o -type f -print'
+export FZF_DEFAULT_COMMAND='find . -type d \( -name node_modules -o -name .git \) -prune -print'
+export FZF_CTRL_T_COMMAND='find . -type d \( -name node_modules -o -name .git \) -prune -o -type f -print'
