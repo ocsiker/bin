@@ -12,47 +12,7 @@ if ! command -v fzf >/dev/null 2>&1; then
 	exit 1
 fi
 
-# Hàm kiểm tra cấu hình title trong Neovim/LazyVim
-check_neovim_title() {
-	local nvim_path=$(command -v nvim)
-	if [ -z "$nvim_path" ]; then
-		echo "Warning: Neovim not found. Please install Neovim."
-		return 1
-	fi
-
-	# Tạo một session tạm để kiểm tra
-	local temp_session="tmux_title_check_$$"
-	tmux new-session -d -s "$temp_session" "nvim --cmd 'echo &title'"
-
-	sleep 0.2 # Đợi Neovim khởi động
-	title_status=$(tmux capture-pane -t "$temp_session:0.0" -p -S -1 | grep -o "0\\|1")
-	tmux kill-session -t "$temp_session"
-
-	if [ "$title_status" != "1" ]; then
-		echo "Warning: 'title' is not enabled in Neovim/LazyVim. Please add the following to your ~/.config/nvim/init.lua or ~/.config/nvim/lua/config/options.lua:"
-		echo "  vim.opt.title = true"
-		echo "  vim.opt.titlestring = \"%t %m\""
-		return 1
-	fi
-	return 0
-}
-
-# Hàm kiểm tra cấu hình set-titles trong tmux
-check_tmux_titles() {
-	if ! tmux show-options -g | grep -q "set-titles on"; then
-		echo "Warning: 'set-titles' is not enabled in tmux. Please add the following to your ~/.tmux.conf:"
-		echo "  set -g set-titles on"
-		echo "Then run 'tmux source-file ~/.tmux.conf' to apply changes."
-		return 1
-	fi
-	return 0
-}
-
-# Thực hiện kiểm tra
-check_neovim_title
-check_tmux_titles
-
-# Lấy danh sách pane với thư mục và tên file
+# Lấy danh sách pane với session, window, pane, window_name, path, và title
 panes=$(tmux list-panes -a -F "#{session_name}:#{window_index}.#{pane_index}: #{window_name} #{pane_current_path} #{pane_title}")
 
 # Xử lý từng pane để lấy tên thư mục cuối
