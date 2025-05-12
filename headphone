@@ -1,4 +1,0 @@
-#!/bin/bash
-
-soundout.sh headphone
-notify-send "Sound Out" "headphone" -t 2000

@@ -1,3 +1,0 @@
-#!/bin/bash
-soundout.sh lineout
-notify-send "Sound Out" "Line 3.5" -t 2000
