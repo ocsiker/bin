@@ -15,22 +15,24 @@ fi
 # Lấy session hiện tại
 current_session=$(tmux display-message -p '#{session_name}')
 
-# Lấy danh sách pane với session, window, pane, window_name, path, và command
-panes=$(tmux list-panes -a -F "#{session_name}:#{window_index}.#{pane_index} #{window_name} #{pane_current_path} #{pane_current_command}")
+# Lấy danh sách pane với session, window, pane, window_name, path, và pane_title
+panes=$(tmux list-panes -a -F "#{session_name}:#{window_index}.#{pane_index} #{window_name} #{pane_current_path} #{pane_title}")
 
 # Xử lý từng pane để tạo định dạng hiển thị
 formatted_panes=""
 while read -r line; do
 	# Tách các trường
-	read -r session_pane window_name path command <<<"$line"
+	read -r session_pane window_name path pane_title <<<"$line"
 	# Lấy tên thư mục cuối từ path, nếu path không hợp lệ thì để "unknown"
 	if [[ -n "$path" && -d "$path" ]]; then
 		dir_name=$(basename "$path")
 	else
 		dir_name="unknown"
 	fi
-	# Tạo định dạng mới: session_name:window_index.pane_index: window_name (command) [dir_name]
-	formatted_panes+="$session_pane: $window_name ($command) [$dir_name]\n"
+	# Sử dụng pane_title, nếu rỗng thì để "no-title"
+	name_file=${pane_title:-"no-title"}
+	# Tạo định dạng mới: session_name:window_index.pane_index: window_name (pane_title) [dir_name]
+	formatted_panes+="$session_pane: $window_name ($name_file) [$dir_name]\n"
 done <<<"$panes"
 
 # Loại bỏ dòng cuối rỗng
@@ -53,19 +55,19 @@ if [[ -n "$choice" ]]; then
 	window_index=$(echo "$pane_target" | cut -d. -f1)
 
 	# Kiểm tra xem session có tồn tại không
-	if ! tmux has-session -t "$session_name" 2>/dev/null; then
+	if ! tmux has-session -t "=$session_name" 2>/dev/null; then
 		echo "Error: Session $session_name does not exist."
 		exit 1
 	fi
 
 	# Nếu session đích khác với session hiện tại, chuyển session trước
 	if [ "$session_name" != "$current_session" ]; then
-		tmux switch-client -t "$session_name"
+		tmux switch-client -t "=$session_name"
 	fi
 
 	# Chọn window và pane
-	tmux select-window -t "$session_name:$window_index"
-	tmux select-pane -t "$session_name:$pane_target"
+	tmux select-window -t "=$session_name:$window_index"
+	tmux select-pane -t "=$session_name:$pane_target"
 else
 	echo "No pane selected."
 fi
